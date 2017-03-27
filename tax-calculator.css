@@ -1,0 +1,111 @@
+header {
+height: 100px;
+}
+
+.navbar {
+margin: 0px;
+font-size: 15px;
+}
+
+#navLogo {
+	padding-top: 0;
+	margin: 0;
+	height: 80%;
+	width: auto;
+}
+
+.entrar {
+	font-size: 18px;
+	margin: 6.5px 30px 6.5px 6.5px;
+	padding: 5px 15px;
+	background-image: linear-gradient(to bottom,#68c056 0,#44a831 100%);
+	color: white;
+	border-radius: 6px;
+	border: 1px solid transparent;
+}
+
+main {
+	overflow: auto;
+}
+
+/*#customNav {
+	margin-left: auto;
+	margin-right: auto;
+	padding-right: 40px;
+	padding-left: 40px;
+}*/
+
+/*Make logo full width on mobile*/
+@media screen and (max-width: 767px) {
+   #navLogo {
+	width: 100%;
+}
+}
+
+#contenedorEstimado {
+	padding: 50px;
+}
+
+#estimado {
+	background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+	text-align: center;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	height: 100px;
+	/*width: 200px;*/
+	box-shadow: 0 1px 2px rgba(0,0,0,.075);
+}
+
+@media screen and (min-width: 768px) {
+
+	.espacio {
+		height: 100px;
+	}
+
+	form {
+	    border: 1px solid #ddd;
+	    box-shadow: 0 1px 2px rgba(0,0,0,.075);
+	    padding-left: 10px;
+	    padding-right: 10px;
+	}
+}
+
+label.btn.btn-success.btn-xs.toggle-on {
+	padding-left: 10px;
+}
+
+.centro {
+	text-align: center;
+}
+
+.optBoxes {
+	padding: 0;
+}
+
+.toggle.btn-xs {
+	border-radius: 34px;
+}
+
+.botonCalculo {
+	text-align: center;
+	padding: 50px;
+}
+
+.socialBar {
+	height: 100px;
+	background-color: gray;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-weight: bold;
+}
+
+.socialBar > div > a:visited {
+	color: white;
+}
+
+.iconSize {
+  margin-left: 20px;
+  margin-right: 10px;
+}

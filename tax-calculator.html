@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- javascript start -->
+		<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script src="https://use.fontawesome.com/7bf0c9a220.js"></script>
+		<script type="text/javascript" src="tax-calculator.js"></script>
+	<!-- javascript end -->
+	<!-- Bootstrap start -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- Mobile Viewing -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Toggle -->
+		<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+	<!-- Bootstrap end -->
+	<meta charset="UTF-8">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" href="./tax-calculator.css">
+	<title>Planillas123</title>
+</head>
+<body>
+	<header>
+		<a href="./index.html"><img id="navLogo" src="images/logo3.png"></a>
+	</header>
+	<nav class="navbar navbar-default">
+  <div id="customNav" class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productos <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Comience Gratis</a></li>
+            <li><a href="#">Avanzado</a></li>
+            <li><a href="#">Profesional</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Especialistas</a></li>
+          </ul>
+        </li>
+        <li><a href="./faqs.html">Preguntas Frecuentes</a></li>
+        <li><a href="" data-toggle="modal" data-target="#myModal">Soporte</a></li>
+        <li><a href="./tax-calculator.html">Calcular Reintegro</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><button class="entrar" type="submit" class="btn btn-default">Entrar</button></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="espacio"></div>
+<main >
+    <!-- Tax Calculator -->
+    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2" id="calculadora">
+      <form>
+        <!-- Estimated Tax Window -->
+        <div id="contenedorEstimado" class="row">
+          <div id="estimado" class="col-md-4 col-md-offset-4">
+            <h4>
+            <p id="pagoOReint">Aquí aparecerá su estimado</p>
+            <p id="cantidadPR"></p>
+            </h4>
+          </div>
+        </div>
+        <div class="form-inline row">
+          <div class="form-group col-md-6 col-xs-6">
+            <label for="salario">Salario: </label>
+            <input type="number" class="form-control" id="salario" placeholder="e.g.: $20,000">
+          </div>
+          <div class="form-group col-md-6 col-xs-6">
+            <label for="retenciones">Impuestos Retenidos: </label>
+            <input type="number" class="form-control" id="retenciones" placeholder="e.g.: $500">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <label for="estadoCivil">Estado Civil: </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="estCivil1" value="soltero" checked> Soltero
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="estCivil2" value="casado"> Casado
+            </label>
+          </div>
+        </div>
+        <div class="row" id="trabajoC" style="display: none;">
+          <div class="col-xs-12 col-sm-6 col-md-7 checkbox">
+            <label>
+              <input id="addConyuge" data-toggle="toggle" type="checkbox" data-on="Sí" data-off="No" data-size="mini" data-onstyle="success"> Tuvo ingresos su cónyuge?
+            </label>
+          </div>
+        </div>
+        <div class="form-inline row" id="ingresosC" style="display: none;">
+          <div class="form-group col-md-6 col-xs-6">
+            <label for="salario">Salario Cónyuge: </label>
+            <input type="number" class="form-control" id="salarioC" placeholder="e.g.: $20,000">
+          </div>
+          <div class="form-group col-md-6 col-xs-6">
+            <label for="retenciones">Impuestos Retenidos: </label>
+            <input type="number" class="form-control" id="retencionesC" placeholder="e.g.: $500">
+          </div>
+        </div>  
+        <div class="row">
+          <div class="col-md-6 col-xs-12 form-inline">
+            <label for="veterano">Es usted o su cónyuge veterano?</label>
+            <select id="veterano" class="form-control">
+              <option selected>No</option>
+              <option>Yo</option>
+              <option>Cónyuge</option>
+              <option>Ambos</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-7 checkbox">
+            <label>
+              <input id="edad" data-toggle="toggle" type="checkbox" data-on="Sí" data-off="No" data-size="mini" data-onstyle="success"> Tenía 26 años o menos durante el año pasado? 
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-7 col-md-7 checkbox">
+            <label id="clickOnDeps">
+              <input id="tieneDeps" data-toggle="toggle" type="checkbox" data-on="Sí" data-off="No" data-size="mini" data-onstyle="success"> Tiene dependientes?
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div id="showFullDep" class="checkbox" style="display: none;">
+            <label class="col-xs-7 col-xs-offset-1 col-md-4 col-md-offset-1" id="clickOnFull">
+              <input id="fullDeps" data-toggle="toggle" type="checkbox" data-on="Sí" data-off="No" data-size="mini" data-onstyle="success"> Custodia Completa? 
+            </label>
+            <span id="showFullQty" class="col-xs-3 col-md-3 form-inline" style="display: none;">
+            <label for="fullDepQty">Cantidad</label>
+              <select id="fullDepQty" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div id="showPartDep" class="checkbox" style="display: none;">
+            <label class="col-xs-7 col-xs-offset-1 col-md-4 col-md-offset-1" id="clickOnPart">
+              <input id="partDeps" data-toggle="toggle" type="checkbox" data-on="Sí" data-off="No" data-size="mini" data-onstyle="success"> Custodia Compartida? 
+            </label>
+            <span id="showPartQty" class="col-xs-3 col-md-3 form-inline" style="display: none;">
+            <label for="partDepQty">Cantidad</label>
+                <select id="partDepQty" class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+              </span>
+            </div>
+         </div>
+         <!-- Credito Oportunidad Americana -->
+         <div class="row">
+          <div class="col-xs-12 col-md-10 checkbox">
+            <label id="clickOnUniv">
+              <input id="universitario" data-toggle="toggle" type="checkbox" data-on="Sí" data-off="No" data-size="mini" data-onstyle="success"> Es usted, su cónyuge o alguno de sus dependientes estudiante universitario? 
+            </label>
+          </div>
+         </div>
+         <div class="row">
+            <div class="checkbox">
+            <label class="col-xs-offset-1 col-xs-6 col-md-offset-1 col-md-5" id="clickOnBeca" style="display: none;">
+              <input id="beca" data-toggle="toggle" type="checkbox" data-on="Sí" data-off="No" data-size="mini" data-onstyle="success"> Tuvo gastos no cubierto por beca? 
+            </label>
+            <span id="optAmerFields" class="col-xs-5 col-md-5 form-inline" style="display: none;">
+              <label for="optAmericana">A cuántos no le cubrió la beca?</label>
+              <select id="optAmerDeps" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+              </select>
+            </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <label id="showOptAmerQty" for="optAmericanaQty" style="display: none;">Entre la cantidad no cubierta de cada dependiente: </label>
+            </div>
+          </div>
+          <!-- Cantidades Credito Oportunidad Americana -->
+          <div class="row" >
+            <div class="form-inline">
+            <div class="form-group col-md-3 col-xs-3 optBoxes">
+              <input type="number" class="form-control" id="optAmerQty1" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            <div class="form-group col-md-3 col-xs-3 optBoxes">       
+              <input type="number" class="form-control" id="optAmerQty2" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            <div class="form-group col-md-3 col-xs-3 optBoxes">       
+              <input type="number" class="form-control" id="optAmerQty3" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            <div class="form-group col-md-3 col-xs-3 optBoxes">      
+              <input type="number" class="form-control" id="optAmerQty4" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            </div>
+          </div>
+          <div class="row" >
+            <div class="form-inline">
+            <div class="form-group col-md-3 col-xs-3 optBoxes">
+              <input type="number" class="form-control" id="optAmerQty5" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            <div class="form-group col-md-3 col-xs-3 optBoxes">       
+              <input type="number" class="form-control" id="optAmerQty6" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            <div class="form-group col-md-3 col-xs-3 optBoxes">       
+              <input type="number" class="form-control" id="optAmerQty7" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            <div class="form-group col-md-3 col-xs-3 optBoxes">      
+              <input type="number" class="form-control" id="optAmerQty8" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            </div>
+          </div>
+          <div class="row" >
+            <div class="form-inline">
+            <div class="form-group col-md-3 col-xs-3 optBoxes">
+              <input type="number" class="form-control" id="optAmerQty9" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            <div class="form-group col-md-3 col-xs-3 optBoxes">       
+              <input type="number" class="form-control" id="optAmerQty10" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            <div class="form-group col-md-3 col-xs-3 optBoxes">       
+              <input type="number" class="form-control" id="optAmerQty11" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            <div class="form-group col-md-3 col-xs-3 optBoxes">      
+              <input type="number" class="form-control" id="optAmerQty12" placeholder="Máximo: $4,000" style="display: none;">
+            </div>
+            </div>
+          </div>
+      <div class="row form-inline">
+      <div class="form-group col-md-8">
+        <label for="hipoteca">Cuánto pagó en intereses hipotecarios?</label>
+        <input type="number" class="form-control" id="hipoteca" placeholder="e.g.: $1,000">
+        </div>
+        </div>
+      <div class="row form-inline">
+        <div class="form-group col-md-10">
+          <label for="presEst">Cuánto pagó en intereses de préstamo estudiantil?</label>
+          <input type="number" class="form-control" id="presEst" placeholder="e.g.: $1,000">
+        </div>
+      </div>
+      <div class="row form-inline">
+      <div class="form-group col-md-8">
+        <label for="donaciones">Cuánto pagó en donaciones?</label>
+        <input type="number" class="form-control" id="donaciones" placeholder="e.g.: $500">
+        </div>
+      </div>
+      <div class="row form-inline">
+        <div class="form-group col-md-8">
+          <label for="medico">Cuánto fueron los Gastos Médicos?</label>
+          <input type="number" class="form-control" id="medico" placeholder="e.g.: $5,000">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-5 checkbox">
+          <label id="showIra">
+            <input id="tieneIra" data-toggle="toggle" type="checkbox" data-on="Sí" data-off="No" data-size="mini" data-onstyle="success"> Depositó en una cuenta IRA? 
+          </label>
+        </div>
+      </div>
+      <div id="entrarIras" class="form-inline" style="display: none;">
+        <div class="form-group">
+        <label class="col-md-4" for="iraPersonal">Cuánto fue usted?</label>
+          <input type="number" class="form-control col-md-2" id="iraPersonal" placeholder="Máximo: $5,000">
+        </div>
+        <div class="form-group">
+        <label class="col-md-4" for="iraConyuge">Cuánto fue su cónyuge?</label>
+          <input type="number" class="form-control col-md-2" id="iraConyuge" placeholder="Máximo: $5,000">
+        </div>
+      </div>
+      <div class="botonCalculo">
+        <button onclick="location.href='#calculadora'" id="calcular" type="button" class="btn btn-primary">Calcular</button>
+      </div>
+    </form>
+    </div>
+
+    <!-- E-Mail Contact Us Modal -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="https://formspree.io/info@planillas123.com" method="POST">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Contacténos</h4>
+            </div>
+            <div class="modal-body">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input name="name" type="text" class="form-control" id="nombre" placeholder="Nombre">
+            </div>
+            <div class="form-group">
+              <label>e-Mail</label>
+              <input name="_replyto" type="email" class="form-control" id="email" placeholder="Correo electrónico">
+            </div>
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input name="phone" type="text" class="form-control" id="phoneNum" placeholder="XXX-XXX-XXXX">
+            </div>
+            <label>¿Cómo le podemos ayudar?</label>
+            <textarea name="question" class="form-control" rows="6"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary pull-right" value="Send">Enviar Datos</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</main>
+<div class="espacio"></div>
+<footer>
+  <!-- Social Media -->
+  <div class="socialBar">
+    <div>
+    Síguenos en: <a href="">
+    <i class="fa fa-facebook-square fa-2x iconSize" aria-hidden="true"></i>
+     Facebook </a> <a href="">
+    <i class="fa fa-twitter-square fa-2x iconSize" aria-hidden="true"></i>
+     Twitter
+    </div>
+  </div>
+</footer>
+</body>
+</html>
